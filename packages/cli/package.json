@@ -87,7 +87,7 @@
   },
   "scripts": {
     "build:self": "tsdown",
-    "build": "pnpm --filter @fedify/cli... run build:self",
+    "build": "turbo run build:self --filter=@fedify/cli...",
     "prepack": "pnpm build",
     "prepublish": "pnpm build",
     "pretest": "pnpm build",

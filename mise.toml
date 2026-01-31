@@ -24,7 +24,7 @@ run = "deno task codegen"
 description = "Prepare the development environment (codegen, install, build fixtures)"
 env = { CI = "true" }  # Prevent pnpm from prompting for confirmation
 depends = ["install"]
-run = "pnpm -r run build:self"
+run = "turbo run build:self"
 
 [tasks.prepare-each]
 description = "Prepare specific package(s)"
@@ -33,7 +33,7 @@ env = { CI = "true" }
 run = '''
 for PACKAGE in ${usage_packages}; do
   echo "Preparing package: $PACKAGE"
-  pnpm --filter "@fedify/$PACKAGE" build
+  turbo run build:self --filter="@fedify/$PACKAGE..."
 done
 '''
 
@@ -106,12 +106,12 @@ run = "deno test --check --doc --allow-all --unstable-kv --trace-leaks --paralle
 [tasks."test:node"]
 description = "Run the test suite using Node.js"
 depends = ["prepare"]
-run = "pnpm run --recursive --parallel --filter '!{docs}' --config.enable-pre-post-scripts=false test"
+run = "turbo run test --filter='!docs' --filter='!./examples/*'"
 
 [tasks."test:bun"]
 description = "Run the test suite using Bun"
 depends = ["prepare"]
-run = "pnpm run --recursive --parallel --filter '!{docs}' --config.enable-pre-post-scripts=false test:bun"
+run = "turbo run test:bun --filter='!docs' --filter='!./examples/*'"
 
 [tasks.test]
 description = "Run the test suite across all environments (Deno, Node.js, Bun)"
@@ -121,14 +121,12 @@ depends = ["check", "test:deno", "test:node", "test:bun"]
 description = "Run tests for a specific package across all environments"
 usage = 'arg "<packages>" help="Package name(s) (without @fedify/ prefix)" var=#true var_min=1'
 run = '''
-mise run prepare-each ${usage_packages}
 mise run check-each ${usage_packages}
 
 for PACKAGE in ${usage_packages}; do
   echo "Running tests for package: $PACKAGE"
   deno task --filter "@fedify/$PACKAGE" test
-  pnpm --filter "@fedify/$PACKAGE" test
-  pnpm --filter "@fedify/$PACKAGE" test:bun
+  turbo run test test:bun --filter="@fedify/$PACKAGE"
 done
 '''
 

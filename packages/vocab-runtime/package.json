@@ -39,7 +39,7 @@
   },
   "scripts": {
     "build:self": "tsdown",
-    "build": "pnpm --filter @fedify/vocab-runtime... run build:self",
+    "build": "turbo run build:self --filter=@fedify/vocab-runtime...",
     "prepack": "pnpm build",
     "prepublish": "pnpm build",
     "pretest": "pnpm build",

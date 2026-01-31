@@ -57,7 +57,7 @@
   },
   "scripts": {
     "build:self": "tsdown",
-    "build": "pnpm --filter @fedify/fastify... run build:self",
+    "build": "turbo run build:self --filter=@fedify/fastify...",
     "prepack": "pnpm build",
     "prepublish": "pnpm build",
     "test": "node --experimental-transform-types --test"

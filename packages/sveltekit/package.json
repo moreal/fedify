@@ -59,7 +59,7 @@
   },
   "scripts": {
     "build:self": "tsdown",
-    "build": "pnpm --filter @fedify/sveltekit... run build:self",
+    "build": "turbo run build:self --filter=@fedify/sveltekit...",
     "prepack": "pnpm build",
     "prepublish": "pnpm build",
     "dev": "tsdown --watch",
