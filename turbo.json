@@ -1,0 +1,48 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "tasks": {
+    "build:self": {
+      "dependsOn": ["^build:self"],
+      "inputs": [
+        "src/**",
+        "tsdown.config.ts",
+        "tsconfig.json",
+        "package.json",
+        "deno.json"
+      ],
+      "outputs": ["dist/**"]
+    },
+    "build": {
+      "dependsOn": ["build:self"],
+      "cache": false
+    },
+    "test": {
+      "dependsOn": ["build:self"],
+      "inputs": [
+        "src/**",
+        "dist/**/*.test.*"
+      ],
+      "cache": false,
+      "env": [
+        "AMQP_URL",
+        "POSTGRES_URL",
+        "REDIS_URL",
+        "AMQP_ORDERING_TEST"
+      ]
+    },
+    "test:bun": {
+      "dependsOn": ["build:self"],
+      "inputs": [
+        "src/**",
+        "dist/**/*.test.*"
+      ],
+      "cache": false,
+      "env": [
+        "AMQP_URL",
+        "POSTGRES_URL",
+        "REDIS_URL",
+        "AMQP_ORDERING_TEST"
+      ]
+    }
+  }
+}

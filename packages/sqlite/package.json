@@ -82,7 +82,7 @@
   },
   "scripts": {
     "build:self": "tsdown",
-    "build": "pnpm --filter @fedify/sqlite... run build:self",
+    "build": "turbo run build:self --filter=@fedify/sqlite...",
     "prepack": "pnpm build",
     "prepublish": "pnpm build",
     "pretest": "pnpm build",

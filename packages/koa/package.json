@@ -60,7 +60,7 @@
   },
   "scripts": {
     "build:self": "tsdown",
-    "build": "pnpm --filter @fedify/koa... run build:self",
+    "build": "turbo run build:self --filter=@fedify/koa...",
     "prepack": "pnpm build",
     "prepublish": "pnpm build"
   }

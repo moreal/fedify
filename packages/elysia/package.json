@@ -47,7 +47,7 @@
   ],
   "scripts": {
     "build:self": "tsdown",
-    "build": "pnpm --filter @fedify/elysia... run build:self",
+    "build": "turbo run build:self --filter=@fedify/elysia...",
     "prepack": "pnpm build",
     "prepublish": "pnpm build"
   },

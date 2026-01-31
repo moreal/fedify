@@ -61,7 +61,7 @@
   },
   "scripts": {
     "build:self": "deno task compile && tsdown",
-    "build": "pnpm --filter @fedify/vocab... run build:self",
+    "build": "turbo run build:self --filter=@fedify/vocab...",
     "prepack": "pnpm build",
     "prepublish": "pnpm build",
     "pretest": "pnpm build",
