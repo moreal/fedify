@@ -1,6 +1,9 @@
 {
   "scripts": {
-    "prepare": "pnpm -r run build:self"
+    "prepare": "turbo run build:self"
+  },
+  "devDependencies": {
+    "turbo": "^2.8.1"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
